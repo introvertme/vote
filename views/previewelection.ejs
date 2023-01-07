@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Election preview</title>
+    <title>PREVIEW YOUR ELECTION</title>
     <meta name="csrf-token" content="<%= csrf %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -9,7 +9,7 @@
     <a href="/elections"><span class="text-white bg-red-600 hover:bg-red-800 font-medium rounded px-3 py-1">Go Back</a></span>
   </b>
 
-  <body style="background-color: rgb(182, 247, 217);;">
+  <body style="background-color: rgb(231, 102, 195);;">
     <div class="grid grid-cols-6">
         <div class="col-start-3 col-span-2">
             <span class="text-2xl font-dark ">Election Preview</span>
@@ -18,8 +18,8 @@
           <div>
             <% for (let i=0; i<questions.length; i++) { %>
                 <div>
-                    <p class="font-bold text">Question <%= i+1 %> : <%= questions[i].questionname %></p>
-                    <p class="font-semibold text-gray-600">Description : <%= questions[i].description %></p>
+                    <p class="font-bold text">QUESTION<%= i+1 %> : <%= questions[i].questionname %></p>
+                    <p class="font-semibold text-gray-600">YOUR DESCRIPTION <%= questions[i].description %></p>
                     <div class="pt-3 pl-5">
                         <% for (let j=0; j<options[i].length; j++) { %>
                           <div class="flex gap-2">

@@ -11,7 +11,7 @@
     </script>
 </head>
    <body >
-    <div class=" flex text-gray-800 flex-col  overflow-hidden bg-gray-50 py-6 sm:py-12 px-20" style="background-color: rgb(182, 247, 217);">
+    <div class=" flex text-gray-800 flex-col  overflow-hidden bg-gray-50 py-6 sm:py-12 px-20" style="background-color: rgb(40, 139, 93);">
         <div class="w-full">
             <div class="w-auto">
         <ul class="flex-auto">
@@ -27,7 +27,7 @@
             </center>
             <div>
                 <b>
-            <h3 class="px-4 py-2 text-2xl font-semidark ">Cast your voter for below questions</h3>
+            <h3 class="px-4 py-2 text-2xl font-semidark ">VOTE FOR BELOW QUESTIONS </h3>
                 </b>
                     <div class="pb-2 px-8">
                         <form action="/<%=electionID%>/externalpage/<%=publicurl%>" method="post" class="divide-y divide-solid">
@@ -37,7 +37,7 @@
                                     <li class="my-3">
                                         <div class="px-3 py-1">
                                             <h3 class="text-3xl my-3"><%= question[i].questionname %></h3>
-                                            <p class="text-black-800 text-md my-3">Description : <%= question[i].description %></p>
+                                            <p class="text-black-800 text-md my-3">DESCRIPTION <%= question[i].description %></p>
                                         </div>
                                         <div class="ml-8">
                                             <ol class="list-none">
@@ -54,7 +54,7 @@
                             </ol>
                             <div class="flex py-4">
                                 <button type="submit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-3 py-1">
-                                    Submit 
+                                    VOTE
                                 </button>
                             </div>
                         </form>

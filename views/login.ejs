@@ -14,20 +14,20 @@
   <body style="background-color: rgb(182, 247, 217);">
     <div class="grid grid-cols-6">
         <div class="col-start-3 col-span-2">
-          <h1 class="text-2xl font-semibold text-gray-600">Login to your account</h1>
-          <p class="py-2"> <a href="/" class="bg-red-600 text-white px-4 py-1 rounded font-medium mr-2 mb-2" >Home page</a> </p>
+          <h1 class="text-2xl font-semibold text-gray-600">LOGIN TO YOUR ACCOUNT</h1>
+          <p class="py-2"> <a href="/" class="bg-red-600 text-white px-4 py-1 rounded font-medium mr-2 mb-2" >HOME PAGE</a> </p>
           <form action="/session" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="py-3">
-           <label for="email">Email:</label>
+           <label for="email">EMAIL:-</label>
            <input type="email" name="email" class="border border-gray-300 text-gray-900 rounded p-2 w-full">
         </div>  
         <div class="py-3"> 
-           <label for="password">Password:</label>
+           <label for="password">PASSWORD:-</label>
            <input type="password" name="password" class="border border-gray-300 text-gray-900 rounded p-2 w-full">
         </div>  
         <div class="py-3"> 
-           <button type="submit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-5 py-2">Sign in</button>        
+           <button type="submit" class="text-black bg-green-600 hover:bg-blue-800 font-medium rounded px-5 py-2">SIGN IN</button>        
         </div>  
         </form>
         <% if(messages && messages.error && messages.error.length > 0)  { %>
