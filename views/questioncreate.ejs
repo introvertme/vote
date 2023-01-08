@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>New question</title>
+    <script src="https://cdn.tailwindcss.com"></script><style>
+        h1{text-align: center;}
+        p{text-align: center;}
+        span{text-align: center;}
+        a{text-align: center;}
+        div{text-align: center;}
+        ol{text-align: center;}
+    </style>
+    <title>NEW QUESTION</title>
 </head>
-
 <body style="background-color: rgb(182, 247, 217);;">
     <div class="grid grid-cols-6">
         <div class="col-start-2 col-span-4">
@@ -15,15 +21,15 @@
           <form action="/createquestions/<%= id %>" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="py-3">
-           <label for="questionname" class="block mt-3 font-semibold">Enter Question:</label>
+           <label for="questionname" class="block mt-3 font-semibold">ENTER QUESTION</label>
            <input id="questionname" name="questionname" type="text" placeholder="Question" class="border border-gray-300 text-gray-900 rounded p-2 w-full">
         </div>  
         <div class="py-3"> 
-           <label for="description">Description:</label>
+           <label for="description">ENTER DESCRIPTION:</label>
            <input id="description" name="description" type="text" placeholder="Description" class="border border-gray-300 text-gray-900 rounded p-2 w-full">
         </div>  
         <div class="py-3"> 
-           <button type="submit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-5 py-2">Create</button>        
+           <button type="submit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-5 py-2">PROCEED</button>        
         </div>  
         </form>
         <% if(messages && messages.error && messages.error.length > 0)  { %>
