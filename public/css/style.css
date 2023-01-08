@@ -1,20 +1,8 @@
 body {
-  font-family: sans-serif;
-  background: white;
-}
-.blink {
-  animation: blink 1s steps(1, end) infinite;
+  color: black;
+  font-family: "Courier New", Courier, monospace;
 }
 
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.Todo-Item:hover .trash-icon {
+  display: block;
 }
-
