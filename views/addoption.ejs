@@ -32,12 +32,12 @@
 </head>
 <body style="background-color: rgb(182, 247, 217);">
     <b>
-        <a href="/questions/<%= id%>" class="text-white bg-red-600 hover:bg-red-800 font-medium rounded px-5 py-2 justify-right">Go Back</a>
+        <a href="/questions/<%= id%>" class="text-white bg-red-600 hover:bg-red-800 font-medium rounded px-5 py-2 justify-right">PREVIOUS PAGE</a>
        </b>
     <div class="grid grid-cols-6">
         <div class="col-start-2 col-span-4">
-            <span class="text-2xl font-dark ">Question : <%= title %></span>
-            <span class="text-black-800">Description : <%= description %></span>
+            <span class="text-2xl font-dark ">QUESTION: <%= title %></span>
+            <span class="text-black-800">DESCRIPTION : <%= description %></span>
             <div class="ml-12">
                 <ol class="list-decimal">
                     <% for(let i=0; i<option.length; i++) { %>
@@ -64,11 +64,11 @@
            <input type="text" name="optionname" placeholder="Enter an option"  class="border border-gray-300 text-gray-900 rounded p-2 w-full">
         </div>  
         <div class="py-3"> 
-           <button type="submit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-5 py-2">Add New Option</button>        
+           <button type="submit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-5 py-2">ADD NEW OPTION</button>        
         </div>  
         </form>
         <b>
-            <p class=" justify-center" align="center"><%= (option.length==0)?"No options are added yet!!":"" %></p>
+            <p class=" justify-center" align="center"><%= (option.length==0)?"NO OPTIONS ARE ADDED YET PLEASE ADD OPTIONS TO PROCEED!!":"" %></p>
         </b>
         <% if(messages && messages.error && messages.error.length > 0)  { %>
             <% for(var i=0; i<messages.error.length; i++) { %>
