@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script><style>
+        h1{text-align: center;}
+        p{text-align: center;}
+        span{text-align: center;}
+        a{text-align: center;}
+        div{text-align: center;}
+        ol{text-align: center;}
+    </style>
     <title>ADD NEW VOTER HERE</title>
 </head>
 
 <body style="background-color: rgb(23, 243, 140);;">
     <div class="grid grid-cols-6">
         <div class="col-start-3 col-span-2">
-            <span class="text-2xl font-dark ">Add New Voter</span>
+            <span class="text-2xl font-dark ">ADD NEW VOTER</span>
           <form action="/newvoter/<%= id %>" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="py-3">
-           <label for="voterid">Voter ID:</label>
+           <label for="voterid">VOTER ID:</label>
            <input id="voterid" name="voterid" type="text" placeholder="voterid" class="border border-gray-300 text-gray-900 rounded p-2 w-full">
         </div>  
         <div class="py-3"> 
