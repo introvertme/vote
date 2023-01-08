@@ -5,7 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="<%= csrfToken %>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script><style>
+        h1{text-align: center;}
+        p{text-align: center;}
+        span{text-align: center;}
+        a{text-align: center;}
+        div{text-align: center;}
+        ol{text-align: center;}
+    </style>
     <script>
         var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
         function deletequestion(id) {
@@ -45,7 +52,7 @@
                 <div class="grid grid-cols-6">
                     <div class="col-start-3 col-span-2">
                         <b>
-                <p class="text-black-600"><%= (questions.length==0)?"No questions yet!":"" %></p>
+                <p class="text-black-600"><%= (questions.length==0)?"NO QUESTIONS CREATED !!!!..%></p>
                         </b>
                 <ol class="list-decimal" type="1">
                     <% for (let i=0; i<questions.length; i++) { %>
