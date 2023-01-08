@@ -38,7 +38,7 @@ describe("Online Voting application test suite", function () {
     }
   });
 
-  test("New user Sign up", async () => {
+  test("New User Sign up", async () => {
     res = await agent.get("/signup");
     const csrfToken = extractCsrfToken(res);
     res = await agent.post("/admin").send({
@@ -50,7 +50,6 @@ describe("Online Voting application test suite", function () {
     });
     expect(res.statusCode).toBe(302);
   });
-
   test("Existing User login", async () => {
     res = await agent.get("/elections");
     expect(res.statusCode).toBe(200);
@@ -58,7 +57,6 @@ describe("Online Voting application test suite", function () {
     res = await agent.get("/elections");
     expect(res.statusCode).toBe(200);
   });
-
   test("Signout your account", async () => {
     let res = await agent.get("/elections");
     expect(res.statusCode).toBe(200);
@@ -67,7 +65,6 @@ describe("Online Voting application test suite", function () {
     res = await agent.get("/elections");
     expect(res.statusCode).toBe(302);
   });
-
   test("Create New  election", async () => {
     const agent = request.agent(server);
     await login(agent, "rohit@test.com", "12345678");
@@ -80,11 +77,9 @@ describe("Online Voting application test suite", function () {
     });
     expect(response.statusCode).toBe(302);
   });
-
-  test("Adding New question in MANAGE QUESTION", async () => {
+ test("Adding New question in MANAGE QUESTION", async () => {
     const agent = request.agent(server);
     await login(agent, "rohit@test.com", "12345678");
-
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/elections").send({
@@ -99,7 +94,6 @@ describe("Online Voting application test suite", function () {
     console.log(parsedResponse);
     const electionCount = parsedResponse.elections_list.length;
     const latestElection = parsedResponse.elections_list[electionCount - 1];
-
     res = await agent.get(`/createquestions/${latestElection.id}`);
     csrfToken = extractCsrfToken(res);
     res = await agent.post(`/createquestions/${latestElection.id}`).send({
@@ -109,11 +103,9 @@ describe("Online Voting application test suite", function () {
     });
     expect(res.statusCode).toBe(302);
   });
-
-  test("Deleting question", async () => {
+ test("Deleting question", async () => {
     const agent = request.agent(server);
     await login(agent, "rohit@test.com", "12345678");
-
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/elections").send({
@@ -127,7 +119,6 @@ describe("Online Voting application test suite", function () {
     const parsedResponse = JSON.parse(ElectionsResponse.text);
     const electionCount = parsedResponse.elections_list.length;
     const latestElection = parsedResponse.elections_list[electionCount - 1];
-
     res = await agent.get(`/createquestions/${latestElection.id}`);
     csrfToken = extractCsrfToken(res);
     await agent.post(`/createquestions/${latestElection.id}`).send({
@@ -135,23 +126,20 @@ describe("Online Voting application test suite", function () {
       description: "players",
       _csrf: csrfToken,
     });
-
-    res = await agent.get(`/createquestions/${latestElection.id}`);
+   res = await agent.get(`/createquestions/${latestElection.id}`);
     csrfToken = extractCsrfToken(res);
     await agent.post(`/createquestions/${latestElection.id}`).send({
       question: "Best",
       description: "Fit",
       _csrf: csrfToken,
     });
-
-    const groupedResponse = await agent
+   const groupedResponse = await agent
       .get(`/questions/${latestElection.id}`)
       .set("Accept", "application/json");
     const parsedquestionsGroupedResponse = JSON.parse(groupedResponse.text);
     const questionCount = parsedquestionsGroupedResponse.questions1.length;
     const latestQuestion =
       parsedquestionsGroupedResponse.questions1[questionCount - 1];
-
     res = await agent.get(`/questions/${latestElection.id}`);
     csrfToken = extractCsrfToken(res);
     const deleteResponse = await agent
@@ -162,10 +150,8 @@ describe("Online Voting application test suite", function () {
     console.log(deleteResponse.text);
     const parsedDeleteResponse = JSON.parse(deleteResponse.text);
     expect(parsedDeleteResponse.success).toBe(true);
-
     res = await agent.get(`/questions/${latestQuestion.id}`);
     csrfToken = extractCsrfToken(res);
-
     const deleteResponse2 = await agent
       .delete(`/deletequestion/${latestElection.id}`)
       .send({
@@ -174,11 +160,9 @@ describe("Online Voting application test suite", function () {
     const parsedDeleteResponse2 = JSON.parse(deleteResponse2.text).success;
     expect(parsedDeleteResponse2).toBe(false);
   });
-
-  test("Update Your question", async () => {
+ test("Update Your question", async () => {
     const agent = request.agent(server);
     await login(agent, "rohit@test.com", "12345678");
-
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/elections").send({
@@ -193,7 +177,6 @@ describe("Online Voting application test suite", function () {
     const electionCount = parsedGroupedResponse.elections_list.length;
     const latestElection =
       parsedGroupedResponse.elections_list[electionCount - 1];
-
     res = await agent.get(`/createquestions/${latestElection.id}`);
     csrfToken = extractCsrfToken(res);
     await agent.post(`/createquestions/${latestElection.id}`).send({
@@ -201,16 +184,14 @@ describe("Online Voting application test suite", function () {
       description: "Select favourate faculty",
       _csrf: csrfToken,
     });
-
-    const QuestionsResponse = await agent
+   const QuestionsResponse = await agent
       .get(`/questions/${latestElection.id}`)
       .set("Accept", "application/json");
     const parsedquestionGroupedResponse = JSON.parse(QuestionsResponse.text);
     const questionCount = parsedquestionGroupedResponse.questions1.length;
     const latestQuestion =
       parsedquestionGroupedResponse.questions1[questionCount - 1];
-
-    res = await agent.get(
+     res = await agent.get(
       `/elections/${latestElection.id}/questions/${latestQuestion.id}/edit`
     );
     csrfToken = extractCsrfToken(res);
@@ -225,11 +206,9 @@ describe("Online Voting application test suite", function () {
       });
     expect(res.statusCode).toBe(302);
   });
-
-  test("Adding New option", async () => {
+ test("Adding New option", async () => {
     const agent = request.agent(server);
     await login(agent, "rohit@test.com", "12345678");
-
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/elections").send({
@@ -244,8 +223,7 @@ describe("Online Voting application test suite", function () {
     const electionCount = parsedGroupedResponse.elections_list.length;
     const latestElection =
       parsedGroupedResponse.elections_list[electionCount - 1];
-
-    res = await agent.get(`/createquestions/${latestElection.id}`);
+     res = await agent.get(`/createquestions/${latestElection.id}`);
     csrfToken = extractCsrfToken(res);
     await agent.post(`/createquestions/${latestElection.id}`).send({
       questionname: "Who Will be in First Place.?",
@@ -260,13 +238,11 @@ describe("Online Voting application test suite", function () {
     const questionCount = parsedquestionsGroupedResponse.questions1.length;
     const latestQuestion =
       parsedquestionsGroupedResponse.questions1[questionCount - 1];
-
-    res = await agent.get(
+     res = await agent.get(
       `/getelections/addoption/${latestElection.id}/${latestQuestion.id}/options`
     );
     csrfToken = extractCsrfToken(res);
-
-    res = await agent
+     res = await agent
       .post(
         `/getelections/addoption/${latestElection.id}/${latestQuestion.id}/options`
       )
@@ -276,11 +252,9 @@ describe("Online Voting application test suite", function () {
       });
     expect(res.statusCode).toBe(302);
   });
-
-  test("Delete option", async () => {
+  test("Delete Option", async () => {
     const agent = request.agent(server);
     await login(agent, "rohit@test.com", "12345678");
-
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/elections").send({
@@ -295,7 +269,6 @@ describe("Online Voting application test suite", function () {
     const electionCount = parsedElectionsResponse.elections_list.length;
     const latestElection =
       parsedElectionsResponse.elections_list[electionCount - 1];
-
     res = await agent.get(`/createquestions/${latestElection.id}`);
     csrfToken = extractCsrfToken(res);
     await agent.post(`/createquestions/${latestElection.id}`).send({
@@ -303,14 +276,12 @@ describe("Online Voting application test suite", function () {
       description: "CHOOSE-OPTION",
       _csrf: csrfToken,
     });
-
-    const QuestionsResponse = await agent
+   const QuestionsResponse = await agent
       .get(`/questions/${latestElection.id}`)
       .set("Accept", "application/json");
     const parsedGroupedResponse = JSON.parse(QuestionsResponse.text);
     const questionCount = parsedGroupedResponse.questions1.length;
     const latestQuestion = parsedGroupedResponse.questions1[questionCount - 1];
-
     res = await agent.get(
       `/getelections/addoption/${latestElection.id}/${latestQuestion.id}/options`
     );
@@ -323,7 +294,6 @@ describe("Online Voting application test suite", function () {
         _csrf: csrfToken,
         optionname: "Done",
       });
-
     const OptionsResponse = await agent
       .get(
         `/getelections/addoption/${latestElection.id}/${latestQuestion.id}/options`
@@ -333,7 +303,6 @@ describe("Online Voting application test suite", function () {
     console.log(parsedoptionGroupedResponse);
     const optionsCount = parsedoptionGroupedResponse.option.length;
     const latestOption = parsedoptionGroupedResponse.option[optionsCount - 1];
-
     res = await agent.get(
       `/getelections/addoption/${latestElection.id}/${latestQuestion.id}/options`
     );
@@ -345,8 +314,7 @@ describe("Online Voting application test suite", function () {
       });
     const DeleteResponse = JSON.parse(deleteResponse.text).success;
     expect(DeleteResponse).toBe(true);
-
-    res = await agent.get(
+   res = await agent.get(
       `/getelections/addoption/${latestElection.id}/${latestQuestion.id}/options`
     );
     csrfToken = extractCsrfToken(res);
@@ -358,11 +326,9 @@ describe("Online Voting application test suite", function () {
     const DeleteResponse2 = JSON.parse(deleteResponse2.text).success;
     expect(DeleteResponse2).toBe(false);
   });
-
-  test("Updating option", async () => {
+test("Updating Option", async () => {
     const agent = request.agent(server);
     await login(agent, "rohit@test.com", "12345678");
-
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/elections").send({
@@ -377,7 +343,6 @@ describe("Online Voting application test suite", function () {
     const electionCount = parsedElectionsResponse.elections_list.length;
     const latestElection =
       parsedElectionsResponse.elections_list[electionCount - 1];
-
     res = await agent.get(`/createquestions/${latestElection.id}`);
     csrfToken = extractCsrfToken(res);
     await agent.post(`/createquestions/${latestElection.id}`).send({
@@ -385,14 +350,12 @@ describe("Online Voting application test suite", function () {
       description: "IN IPL",
       _csrf: csrfToken,
     });
-
     const QuestionsResponse = await agent
       .get(`/questions/${latestElection.id}`)
       .set("Accept", "application/json");
     const parsedGroupedResponse = JSON.parse(QuestionsResponse.text);
     const questionCount = parsedGroupedResponse.questions1.length;
     const latestQuestion = parsedGroupedResponse.questions1[questionCount - 1];
-
     res = await agent.get(
       `/getelections/addoption/${latestElection.id}/${latestQuestion.id}/options`
     );
@@ -400,13 +363,12 @@ describe("Online Voting application test suite", function () {
     res = await agent
       .post(
         `/getelections/addoption/${latestElection.id}/${latestQuestion.id}/options`
-      )
+    )
       .send({
         _csrf: csrfToken,
         optionname: "HYDERABAD",
       });
-
-    const OptionsResponse = await agent
+const OptionsResponse = await agent
       .get(
         `/getelections/addoption/${latestElection.id}/${latestQuestion.id}/options`
       )
@@ -415,12 +377,10 @@ describe("Online Voting application test suite", function () {
     console.log(parsedoptionGroupedResponse);
     const optionsCount = parsedoptionGroupedResponse.option.length;
     const latestOption = parsedoptionGroupedResponse.option[optionsCount - 1];
-
     res = await agent.get(
       `/elections/${latestElection.id}/questions/${latestQuestion.id}/options/${latestOption.id}/edit`
     );
     csrfToken = extractCsrfToken(res);
-
     res = await agent
       .post(
         `/elections/${latestElection.id}/questions/${latestQuestion.id}/options/${latestOption.id}/edit`
@@ -431,11 +391,9 @@ describe("Online Voting application test suite", function () {
       });
     expect(res.statusCode).toBe(302);
   });
-
-  test("Adding New voter", async () => {
+test("Adding New voter", async () => {
     const agent = request.agent(server);
     await login(agent, "rohit@test.com", "12345678");
-
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/elections").send({
