@@ -31,7 +31,7 @@
         }
     </script>
     <link rel="stylesheet" href="./css/style.css">
-    <title><%= title %></title>
+    <title><marquee bgcolor="#000080" style="color: #FFFFFF; font-family: Book Antiqua" behavior="ALTERNATE" ><%= title %></marquee></title>
     <style>
         span {
           display: block;
@@ -39,9 +39,6 @@
         </style>
 </head>
 <body style="background-color: rgb(182, 247, 217);">
-    <b>
-        <a href="/questions/<%= id%>" class="text-white bg-red-400 hover:bg-red-800 font-medium rounded px-5 py-2 justify-right">PREVIOUS PAGE</a>
-       </b>
     <div class="grid grid-cols-6">
         <div class="col-start-2 col-span-4">
             <span class="text-2xl font-dark ">QUESTION: <%= title %></span>
@@ -75,6 +72,9 @@
            <button type="submit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-5 py-2">ADD NEW OPTION</button>        
         </div>  
         </form>
+        <b>
+        <a href="/questions/<%= id%>" class="text-white bg-red-400 hover:bg-red-800 font-medium rounded px-5 py-2 justify-right">PREVIOUS PAGE</a>
+       </b>
         <b>
             <p class=" justify-center" align="center"><%= (option.length==0)?"NO OPTIONS ARE ADDED YET PLEASE ADD OPTIONS TO PROCEED!!":"" %></p>
         </b>
