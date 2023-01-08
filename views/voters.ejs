@@ -5,7 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="<%= csrfToken %>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script><style>
+        h1{text-align: center;}
+        p{text-align: center;}
+        span{text-align: center;}
+        a{text-align: center;}
+        div{text-align: center;}
+        ol{text-align: center;}
+    </style>
     <script>
         var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
         function removevoter(id) {
@@ -29,12 +36,12 @@
                 <div class="col-start-3 col-span-2">
             <center>
                 <b>
-            <h5 class="text-3xl"><%= title %> Voters-List</h5>
+            <h5 class="text-3xl"><%= title %>LIST OF ALL VOTERS</h5>
         </b>
             </center>
                 </div>
             </div>
-            <div class="bg-black-600 px-2 py-1 hover:bgblack-600">
+            <div class="bg-black-600 px-2 py-1 hover:bg-black-600">
                 <b>
             </b>
                    <a href="/electionslist/<%=id%>" class="text-white bg-red-600 hover:bg-red-800 font-medium rounded px-5 py-2 justify-right">Go Back</a>
@@ -59,7 +66,7 @@
                                 <div class="flex gap-2 text-600" align="center">
                                     <div class="rounded w-fit px-2 py-1 flex gap-2 cursor-pointer hover:text-600">
         
-                                        <a href="/elections/<%=election.id%>/voter/<%=voters[i].id%>/edit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-3 py-1.5">Edit passowrd</a>
+                                        <a href="/elections/<%=election.id%>/voter/<%=voters[i].id%>/edit" class="text-white bg-MediumSeaGreen-600 hover:bg-MediumSeaGreen-800 font-medium rounded px-3 py-1.5">Edit passowrd</a>
                                     </div>
                                      <% if((voters.length) >1) {%> 
                                     <div class="rounded w-fit px-2 py-1 flex gap-2 cursor-pointer hover:text-600">    
