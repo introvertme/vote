@@ -42,9 +42,9 @@ describe("Voting application test suite", function () {
     res = await agent.get("/signup");
     const csrfToken = extractCsrfToken(res);
     res = await agent.post("/admin").send({
-      firstName: "Vineeth",
-      lastName: "Dharna",
-      email: "vineeth@test.com",
+      firstName: "Rohit",
+      lastName: "Avadhanula",
+      email: "rohit@test.com",
       password: "12345678",
       _csrf: csrfToken,
     });
@@ -54,7 +54,7 @@ describe("Voting application test suite", function () {
   test("User login", async () => {
     res = await agent.get("/elections");
     expect(res.statusCode).toBe(200);
-    await login(agent, "vineeth@test.com", "12345678");
+    await login(agent, "rohit@test.com", "12345678");
     res = await agent.get("/elections");
     expect(res.statusCode).toBe(200);
   });
@@ -74,7 +74,7 @@ describe("Voting application test suite", function () {
     const res = await agent.get("/addquestion");
     const csrfToken = extractCsrfToken(res);
     const response = await agent.post("/elections").send({
-      electionName: "vineeth",
+      electionName: "ROHIT",
       publicurl: "urll",
       _csrf: csrfToken,
     });
@@ -83,7 +83,7 @@ describe("Voting application test suite", function () {
 
   test("Adding  question", async () => {
     const agent = request.agent(server);
-    await login(agent, "vineeth@test.com", "12345678");
+    await login(agent, "rohit@test.com", "12345678");
 
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
@@ -112,7 +112,7 @@ describe("Voting application test suite", function () {
 
   test("Deleting question", async () => {
     const agent = request.agent(server);
-    await login(agent, "vineeth@test.com", "12345678");
+    await login(agent, "rohit@test.com", "12345678");
 
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
@@ -228,7 +228,7 @@ describe("Voting application test suite", function () {
 
   test("Adding option", async () => {
     const agent = request.agent(server);
-    await login(agent, "vineeth@test.com", "12345678");
+    await login(agent, "rohit@test.com", "12345678");
 
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
@@ -361,13 +361,13 @@ describe("Voting application test suite", function () {
 
   test("Updating option", async () => {
     const agent = request.agent(server);
-    await login(agent, "vineeth@test.com", "12345678");
+    await login(agent, "rohit@test.com", "12345678");
 
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/elections").send({
       electionName: "Vote",
-      publicurl: "url7",
+      publicurl: "Vote-url7",
       _csrf: csrfToken,
     });
     const ElectionsResponse = await agent
@@ -381,7 +381,7 @@ describe("Voting application test suite", function () {
     res = await agent.get(`/createquestions/${latestElection.id}`);
     csrfToken = extractCsrfToken(res);
     await agent.post(`/createquestions/${latestElection.id}`).send({
-      questionname: "CR",
+      questionname: "LEADER",
       description: "Best",
       _csrf: csrfToken,
     });
@@ -434,13 +434,13 @@ describe("Voting application test suite", function () {
 
   test("Adding voter", async () => {
     const agent = request.agent(server);
-    await login(agent, "vineeth@test.com", "12345678");
+    await login(agent, "rohit@test.com", "12345678");
 
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/elections").send({
-      electionName: "Vote SPL",
-      publicurl: "URL-9",
+      electionName: "Vote-SPL",
+      publicurl: "SPL-URL-9",
       _csrf: csrfToken,
     });
     const groupedResponse = await agent
@@ -452,8 +452,8 @@ describe("Voting application test suite", function () {
     res = await agent.get(`/newvoter/${latestElection.id}`);
     csrfToken = extractCsrfToken(res);
     let response = await agent.post(`/newvoter/${latestElection.id}`).send({
-      voterid: "vineeth",
-      password: "vineeth123",
+      voterid: "Rohit",
+      password: "rohit@test.com",
       electionID: latestElection.id,
       _csrf: csrfToken,
     });
@@ -462,12 +462,12 @@ describe("Voting application test suite", function () {
 
   test("Preview election", async () => {
     const agent = request.agent(server);
-    await login(agent, "vineeth@test.com", "12345678");
+    await login(agent, "rohit@test.com", "12345678");
     let res = await agent.get("/addquestion");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/elections").send({
-      electionName: "Hello",
-      publicurl: "URL",
+      electionName: "HII",
+      publicurl: "hi-url",
       _csrf: csrfToken,
     });
     const ElectionsResponse = await agent
