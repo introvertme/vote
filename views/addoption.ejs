@@ -38,7 +38,7 @@ ol{text-align: center;}
         }
         </style>
 </head>
-<body style="background-color: rgb(182, 247, 217);">
+<body style="background-color:#FFEBCD">
     <div class="grid grid-cols-6">
         <div class="col-start-2 col-span-4">
             <span class="text-2xl font-dark " style="color:firebrick;background-color:#FFF8DC;">QUESTION: <%= title %></span>
@@ -51,10 +51,9 @@ ol{text-align: center;}
                                 <p class="ml-2 text-lg "><%= option[i].optionname %></p>
                                 <div class="flex gap-2 ">
                                 <div class="rounded w-fit px-2 py-1 flex gap-2">                                                                          
-                                    <a href="/elections/<%=id%>/questions/<%=questionID%>/options/<%=option[i].id%>/edit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-3 py-1.5 justify-right">Edit</a>
+                                    <a href="/elections/<%=id%>/questions/<%=questionID%>/options/<%=option[i].id%>/edit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-3 py-1.5 justify-right">EDIT</a>
                                 </div>
-                                <div class="rounded w-fit px-2 py-1 flex gap-2">
- <a onclick="deleteOption(<%= option[i].id %>)" class="text-white bg-red-600 hover:bg-red-800 font-medium rounded px-3 py-1.5 justify-right">Delete</a>
+                                <div class="rounded w-fit px-2 py-1 flex gap-2"><a onclick="deleteOption(<%= option[i].id %>)" class="text-white bg-red-600 hover:bg-red-800 font-medium rounded px-3 py-1.5 justify-right">DELETE</a>
                                 </div>
                                 </div>
                             </div>
