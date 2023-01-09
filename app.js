@@ -27,7 +27,7 @@ app.use(
   session({
     secret: "my-super-secret-key-2837428907583420",
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000,
+      maxAge: 60*60*24*1000,
     },
   })
 );
@@ -52,11 +52,11 @@ passport.use(
           if (result) {
             return done(null, user);
           } else {
-            return done(null, false, { message: "Invalid Password!" });
+            return done(null, false, { message: "Incorrect Password!" });
           }
         })
         .catch(() => {
-          return done(null, false, { message: "Invalid Email-ID!" });
+          return done(null, false, { message: "incorrect Email-ID!" });
         });
     }
   )
@@ -77,13 +77,11 @@ passport.use(
           if (result) {
             return done(null, user);
           } else {
-            return done(null, false, { message: "Invalid password" });
+            return done(null, false, { message: "Incorrect password" });
           }
         })
         .catch(() => {
-          return done(null, false, {
-            message: "Invalid ID",
-          });
+          return done(null, false, {message: "Icorrect  ID",});
         });
     }
   )
@@ -115,7 +113,6 @@ passport.deserializeUser((id, done) => {
       });
   }
 });
-
 app.post(
   "/session",
   passport.authenticate("user-local", {
@@ -141,7 +138,7 @@ app.get("/", (request, response) => {
     }
   } else {
     response.render("index", {
-      title: "Online Voting Platform",
+      title: "Voting_app",
     });
   }
 });
@@ -151,7 +148,7 @@ app.get(
   connectEnsureLogin.ensureLoggedIn(),
   async (request, response) => {
     response.render("index", {
-      title: "Online Voting interface",
+      title: "Voting_app",
       csrfToken: request.csrfToken(),
     });
   }
@@ -168,7 +165,7 @@ app.get(
         const elections_list = await Election.getElections(request.user.id);
         if (request.accepts("html")) {
           response.render("elections", {
-            title: "Online Voting interface",
+            title: "Voting_app",
             userName: loggedinuser,
             elections_list,
           });
@@ -192,7 +189,7 @@ app.get(
   async (request, response) => {
     if (request.user.case === "admins") {
       response.render("newelection", {
-        title: "Create an election",
+        title: "Create New Election",
         csrfToken: request.csrfToken(),
       });
     }
@@ -209,7 +206,7 @@ app.post(
         return response.redirect("/addquestion");
       }
       if (request.body.publicurl.length === 0) {
-        request.flash("error", "Public url can't be empty!");
+        request.flash("error", "Enter the url!!");
         return response.redirect("/addquestion");
       }
       try {
@@ -220,7 +217,7 @@ app.post(
         });
         return response.redirect("/elections");
       } catch (error) {
-        request.flash("error", "This URL already taken try with another!");
+        request.flash("error", "The url alredy exists plse chose the different url!!");
         return response.redirect("/addquestion");
       }
     } else if (request.user.role === "voter") {
@@ -232,7 +229,7 @@ app.post(
 app.get("/signup", (request, response) => {
   try {
     response.render("signup", {
-      title: "Create admin account",
+      title: "Create  an admin account",
       csrfToken: request.csrfToken(),
     });
   } catch (err) {
@@ -254,26 +251,26 @@ app.get("/login", (request, response) => {
     return response.redirect("/elections");
   }
   response.render("login", {
-    title: "Login Admin",
+    title: "Admin login page",
     csrfToken: request.csrfToken(),
   });
 });
 
 app.post("/admin", async (request, response) => {
   if (request.body.email.length == 0) {
-    request.flash("error", "Email can't be empty!");
+    request.flash("error", "Add Email!!");
     return response.redirect("/signup");
   }
   if (request.body.firstName.length == 0) {
-    request.flash("error", "Firstname can't be empty!");
+    request.flash("error", "ADD FIRST NAME!!");
     return response.redirect("/signup");
   }
   if (request.body.password.length == 0) {
-    request.flash("error", "Password can't be empty!");
+    request.flash("error", "Enter password!!");
     return response.redirect("/signup");
   }
   if (request.body.password.length <= 5) {
-    request.flash("error", "Password length should be minimum of length 6!");
+    request.flash("error", "you assword should contain 5 characters");
     return response.redirect("/signup");
   }
   const hashedPwd = await bcrypt.hash(request.body.password, saltRounds);
@@ -294,7 +291,7 @@ app.post("/admin", async (request, response) => {
     });
   } catch (error) {
     console.log(error);
-    request.flash("error", "User Already Exist with this mail!");
+    request.flash("error", "User account already exists plse login to your account!!");
     return response.redirect("/signup");
   }
 });
