@@ -76,7 +76,7 @@
         <a href="/questions/<%= id%>" class="text-white bg-tomato -400 hover:bg-red-800 font-medium rounded px-5 py-2 justify-right">PREVIOUS PAGE</a>
        </b>
         <b>
-            <p class=" justify-center" align="center"><%= (option.length==0)?<marquee bgcolor="TOMATO" style="color: #FFFFFF; font-family: Book Antiqua" behavior="ALTERNATE" >"NO OPTIONS ARE ADDED YET PLEASE ADD OPTIONS TO PROCEED!!":"" </marquee>%></p>
+            <p class=" justify-center" align="center"><%= (option.length==0)?<marquee bgcolor="TOMATO" style="color: #FFFFFF; width="100%"font-family: Book Antiqua" behavior="ALTERNATE" >"NO OPTIONS ARE ADDED YET PLEASE ADD OPTIONS TO PROCEED!!":"" </marquee>%></p>
         </b>
         <% if(messages && messages.error && messages.error.length > 0)  { %>
             <% for(var i=0; i<messages.error.length; i++) { %>
