@@ -14,7 +14,7 @@
   <body style="background-color:Tomato;">
     <div class="grid grid-cols-6">
         <div class="col-start-3 col-span-2">
-         <h1 class="text-2xl font-semibold text-gray-600">SIGN UP AS NEW ADMIN</h1>
+         <h1  style="background-color:powderblue; class="text-2xl font-semibold text-gray-600">SIGN UP AS NEW ADMIN</h1>
           <p class="py-2"> <a href="/" class="bg-red-600 text-white px-4 py-1 rounded font-medium mr-2 mb-2" >HOME PAGE</a> </p>
           <form action="/admin" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -23,15 +23,15 @@
            <input type="text" name="firstName" class="border border-gray-300 text-gray-900 rounded p-2 w-full">
         </div>
         <div class="py-3">
-           <label for="lastName">PLEASE ENTER YOUR LAST NAME:</label>
+           <label for="lastName" style="background-color:LightGray";>PLEASE ENTER YOUR LAST NAME:</label>
            <input type="text" name="lastName" class="border border-gray-300 text-gray-900 rounded p-2 w-full">
         </div>
         <div class="py-3">
-           <label for="email">PLEASE ENTER YOUR EMAIL:</label>
+           <label for="email" style="background-color:LightGray";>PLEASE ENTER YOUR EMAIL:</label>
            <input type="email" name="email" class="border border-gray-300 text-gray-900 rounded p-2 w-full">
         </div>  
         <div class="py-3"> 
-           <label for="password">CHOOSE A STRONG PASSWORD:</label>
+           <label for="password" style="background-color:LightGray";>CHOOSE A STRONG PASSWORD:</label>
            <input type="password" name="password" class="border border-gray-300 text-gray-900 rounded p-2 w-full">
         </div>  
         <div class="py-3"> 
