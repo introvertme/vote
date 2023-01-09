@@ -52,7 +52,7 @@ passport.use(
           if (result) {
             return done(null, user);
           } else {
-            return done(null, false, { message: "Incorrect Password!" });
+            return done(null, false, { message: "incorrect Password!" });
           }
         })
         .catch(() => {
@@ -77,11 +77,11 @@ passport.use(
           if (result) {
             return done(null, user);
           } else {
-            return done(null, false, { message: "Incorrect password" });
+            return done(null, false, { message: "incorrect password" });
           }
         })
         .catch(() => {
-          return done(null, false, {message: "Icorrect  ID",});
+          return done(null, false, {message: "incorrect  ID",});
         });
     }
   )
@@ -217,7 +217,7 @@ app.post(
         });
         return response.redirect("/elections");
       } catch (error) {
-        request.flash("error", "The url alredy exists plse chose the different url!!");
+        request.flash("error", "The url alredy exists plse choose the different url!!");
         return response.redirect("/addquestion");
       }
     } else if (request.user.role === "voter") {
@@ -229,7 +229,7 @@ app.post(
 app.get("/signup", (request, response) => {
   try {
     response.render("signup", {
-      title: "Create  an admin account",
+      title: "Create  an Admin account",
       csrfToken: request.csrfToken(),
     });
   } catch (err) {
@@ -251,14 +251,14 @@ app.get("/login", (request, response) => {
     return response.redirect("/elections");
   }
   response.render("login", {
-    title: "Admin login page",
+    title: "Admin Login Page",
     csrfToken: request.csrfToken(),
   });
 });
 
 app.post("/admin", async (request, response) => {
   if (request.body.email.length == 0) {
-    request.flash("error", "Add Email!!");
+    request.flash("error", "Add New Email!!");
     return response.redirect("/signup");
   }
   if (request.body.firstName.length == 0) {
@@ -291,7 +291,7 @@ app.post("/admin", async (request, response) => {
     });
   } catch (error) {
     console.log(error);
-    request.flash("error", "User account already exists plse login to your account!!");
+    request.flash("error", "User account already exists please login to your account!!");
     return response.redirect("/signup");
   }
 });
@@ -345,7 +345,7 @@ app.get(
       if (election.launched) {
         request.flash(
           "error",
-          "Can not modify question while election is running!"
+          "your election is running !! can't implement your request"
         );
         return response.redirect(`/electionslist/${request.params.id}`);
       }
@@ -384,11 +384,11 @@ app.post(
   async (request, response) => {
     if (request.user.case === "admins") {
       if (!request.body.questionname) {
-        request.flash("error", "Question can't be empty!");
+        request.flash("error", "please enter a question to proceed...!!!");
         return response.redirect(`/createquestions/${request.params.id}`);
       }
-      if (request.body.questionname < 3) {
-        request.flash("error", "Question name should be atlesat 3 characters!");
+      if (request.body.questionname < 5) {
+        request.flash("error", "please enter a question name with 5 characters");
         return response.redirect(`/createquestions/${request.params.id}`);
       }
       try {
@@ -459,7 +459,7 @@ app.post(
   async (request, response) => {
     if (request.user.case === "admins") {
       if (!request.body.optionname) {
-        request.flash("error", "Option can't be empty!");
+        request.flash("error", "Please Enter An Option");
         return response.redirect(
           `/getelections/addoption/${request.params.id}/${request.params.questionID}/options`
         );
@@ -519,7 +519,7 @@ app.post(
   async (request, response) => {
     if (request.user.case === "admins") {
       if (request.body.questionname.length < 3) {
-        request.flash("error", "Question name should be atlesat 3 characters!");
+        request.flash("error", "Question name should be atlesat 5 characters!");
         return response.redirect(
           `/elections/${request.params.electionID}/questions/${request.params.questionID}/edit`
         );
@@ -693,15 +693,15 @@ app.post(
   async (request, response) => {
     if (request.user.case === "admins") {
       if (request.body.voterid.length == 0) {
-        request.flash("error", "Voter ID can't be empty!");
+        request.flash("error", "Enter  a Voter-to Continue!!");
         return response.redirect(`/newvoter/${request.params.id}`);
       }
       if (request.body.password.length == 0) {
-        request.flash("error", "Password can't be empty!!");
+        request.flash("error", "choose your Password with more than 6 characters!");
         return response.redirect(`/newvoter/${request.params.id}`);
       }
-      if (request.body.password.length < 3) {
-        request.flash("error", "Password length can't be less than 3!");
+      if (request.body.password.length < 6) {
+        request.flash("error", "Password should be greater than 6 characters!");
         return response.redirect(`/newvoter/${request.params.id}`);
       }
       const hashedPwd = await bcrypt.hash(request.body.password, saltRounds);
@@ -710,7 +710,7 @@ app.post(
         return response.redirect(`/voters/${request.params.id}`);
       } catch (error) {
         console.log(error);
-        request.flash("error", "Voter ID already used, try another!");
+        request.flash("error", "Voter ID EXISTS Chose different VoterId!!");
         return response.redirect(`/newvoter/${request.params.id}`);
       }
     }
@@ -776,22 +776,22 @@ app.get(
       const question = await questions.findAll({
         where: { electionID: request.params.id },
       });
-      if (question.length <= 1) {
-        request.flash("error", "Add atleast two questions in the ballot!");
+      if (question.length = 1) {
+        request.flash("error", "Please Add One question in  Election Ballot!!");
         return response.redirect(`/electionslist/${request.params.id}`);
       }
 
       for (let i = 0; i < question.length; i++) {
         const option = await options.retrieveoptions(question[i].id);
-        if (option.length <= 1) {
-          request.flash("error", "Add atleast two options to the question!");
+        if (option.length <= 3) {
+          request.flash("error", "Add Three Options to Question");
           return response.redirect(`/electionslist/${request.params.id}`);
         }
       }
 
       const voters = await Voters.getvoters(request.params.id);
-      if (voters.length <= 1) {
-        request.flash("error", "Add atleast two voters to lauch election");
+      if (voters.length <= 5) {
+        request.flash("error", "Add atleast 5voters to Continue!!!");
         return response.redirect(`/electionslist/${request.params.id}`);
       }
 
@@ -820,7 +820,7 @@ app.get(
         optionsnew.push(optionlist);
       }
       if (election.launched) {
-        request.flash("error", "You can not preview election while Running");
+        request.flash("error", "Preview After completation of Election!!");
         return response.redirect(`/electionslist/${request.params.id}`);
       }
 
@@ -849,7 +849,7 @@ app.get("/externalpage/:publicurl", async (request, response) => {
 
 app.get("/vote/:publicurl/", async (request, response) => {
   if (request.user === false) {
-    request.flash("error", "Please login before voting!");
+    request.flash("error", "Please Login to cast your Vote!");
     return response.redirect(`/externalpage/${request.params.publicurl}`);
   }
   const election = await Election.getElectionurl(request.params.publicurl);
@@ -881,7 +881,7 @@ app.get("/vote/:publicurl/", async (request, response) => {
         return response.render("404");
       }
     } else if (request.user.case === "admins") {
-      request.flash("error", "Sorry! Can't vote as admin");
+      request.flash("error", "You are Admin!!!Can't Vote");
       return response.redirect(`/electionslist/${election.id}`);
     }
   } catch (error) {
