@@ -35,7 +35,7 @@
             <div class="grid grid-cols-6">
                 <div class="col-start-3 col-span-2">
                 <b>
-            <h5 class="text-2xl"><%= title %> YOUR QUESTIONS LIST</h5>
+            <h4 class="text-2xl"><%= title %> YOUR QUESTIONS LIST</h4>
         </b>
                 </div>
             </div>
@@ -67,13 +67,12 @@
                                 <div class="flex gap-2 text-600" align="center">
                                     <div class="rounded w-fit px-2 py-1 flex gap-2 cursor-pointer hover:text-600">
         
-                                        <a href="/elections/<%=election.id%>/questions/<%=questions[i].id%>/edit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-3 py-1.5 justify-right">Edit </a>
+                                        <a href="/elections/<%=election.id%>/questions/<%=questions[i].id%>/edit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-3 py-1.5 justify-right">EDIT</a>
                                     </div>
                                      <% if((questions.length) >1) {%> 
                                     <div class="rounded w-fit px-2 py-1 flex gap-2 cursor-pointer hover:text-600">    
-                                        <a onclick="deletequestion(<%= questions[i].id %>)" class="text-white bg-red-600 hover:bg-red-800 font-medium rounded px-3 py-1.5 justify-right">Delete</a>
+                                        <a onclick="deletequestion(<%= questions[i].id %>)" class="text-white bg-red-600 hover:bg-red-800 font-medium rounded px-3 py-1.5 justify-right">DELETE</a>
                                          <%} %>
-                                       
                                     </div>
                                 </div>
                             </div>
