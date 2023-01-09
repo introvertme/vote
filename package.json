@@ -1,5 +1,5 @@
 {
-  "name": "online-voting-application",
+  "name": "online_votting_app",
   "version": "1.0.0",
   "description": "Voting_app",
   "main": "index.js",
@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git+https://github.com/AVADHANULAROHIT/votting_app.git"
   },
-  "author": "Vineeth",
+  "author": "Rohit",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AVADHANULAROHIT/votting_app/issues"
