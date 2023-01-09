@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="<%= csrfToken %>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        h1{text-align: center;}
-        H3{text-align: center;}
-        p{text-align: center;}
-        span{text-align: center;}
-        a{text-align: center;}
-        div{text-align: center;}
-        ol{text-align: center;}
-    </style>
-    <title><%= title %></title>
-    <script>
-    </script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="csrf-token" content="<%= csrfToken %>">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+ h1{text-align: center;}
+ h3{text-align: center;}
+ p{text-align: center;}
+ span{text-align: center;}
+ a{text-align: center;}
+ div{text-align: center;}
+ ol{text-align: center;}
+ </style>
+<title><%= title %></title>
+<script>
+</script>
 </head>
-   <body >
-    <div class=" flex text-gray-800 flex-col  overflow-hidden bg-gray-50 py-6 sm:py-12 px-20" style="background-color: rgb(40, 139, 93);">
-        <div class="w-full">
-            <div class="w-auto">
-      </div>
-            <center>
-                <b>
-                <span class="text-4xl font-dark"><%= title %></span>
-                </b>
-            </center>
-            <div>
-                <b>
-            <h3 class="px-4 py-2 text-2xl font-semidark ">VOTE FOR BELOW QUESTIONS </h3>
-                </b>
-                    <div class="pb-2 px-8">
-                        <form action="/<%=electionID%>/externalpage/<%=publicurl%>" method="post" class="divide-y divide-solid">
-                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+ <body >
+ <div class=" flex text-gray-800 flex-col  overflow-hidden bg-gray-50 py-6 sm:py-12 px-20" style="background-color: rgb(40, 139, 93);">
+ <div class="w-full">
+ <div class="w-auto">
+ </div>
+ <center>
+ <b>
+ <span class="text-4xl font-dark" style="color:firebrick;  background-color:papayawhip;"><%= title %></span>
+ </b>
+ </center>
+ <div>
+ <b>
+ <h3 class="px-4 py-2 text-2xl font-semidark " style="color:firebrick;background-color:papayawhip;">VOTE FOR BELOW QUESTIONS </h3>
+ </b>
+ <div class="pb-2 px-8">
+ <form action="/<%=electionID%>/externalpage/<%=publicurl%>" method="post" class="divide-y divide-solid">
+ <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                             <ol class="list-decimal mb-5">
                                 <% for(let i=0; i<question.length; i++) { %>
                                     <li class="my-3">
@@ -66,10 +66,10 @@
             <a href="/externalpage/<%=publicurl%>" class="text-white bg-red-600 hover:bg-red-800 font-medium rounded px-5 py-2">SIGN OUT</a>
           </li>
         </ul>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        </form>
+         </div>
+         </div>
+         </div>
         </div>
     </div>
     <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
